@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+class stackNode{
+    public:
+    int data;
+    stackNode*next;
+    int size;
+    stackNode(int x){
+       data=x;
+       next=NULL;
+    }
+};
+    class stack {
+        public:
+        stackNode * top;
+        int size;
+        stack() {
+        top = NULL;
+        size = 0;
+  }
+  void stackpush(int x){
+      stackNode*element=new stackNode(x);
+      element->next=top;
+      top=element;
+      size++;
+  }
+  int stackpop(){
+      int ans=top->data;
+       stackNode*temp=top;
+      top=top->next;
+      delete temp;
+      size--;
+      return ans;
+  }
+  bool stackempty(){
+      return (top==NULL);
+  }
+  int stackpeek(){
+      if(top==NULL) return -1;
+      return top->data;
+  }
+  void stackdata(){
+      stackNode*current=top;
+      while(current!=0){
+          cout<<current->data<<" ";
+          current=current->next;
+      }
+  }
+};
+
+int main() {
+    // Write C++ code here
+    stack s;
+    s.stackpush(4);
+    s.stackpush(0);
+    s.stackpush(1);
+    cout<<"the poped element is"<<s.stackpop()<<endl;
+    cout<<"is stack is empty"<<s.stackempty()<<endl;
+    cout<<"the element at peek "<<s.stackpeek()<<endl;
+   s.stackdata();
+    return 0;
+}
