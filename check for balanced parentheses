@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+#include<iostream>
+using namespace std;
+ bool isvalid(string s){
+     stack<char>st;
+     for(auto it:s){
+         if(it=='(' || it=='{' || it=='['){
+             st.push(it);
+         }
+         else{
+             if(st.size()==0){
+                 return false;
+             }
+            int ch=st.top();
+            st.pop();
+            if((ch=='(' && it==')')||(ch=='{' && it=='}')||(ch=='[' && it==']')) continue;
+            else{
+                return false;
+            }
+         }
+     }
+     return st.empty();
+ }
+ int main(){
+     string s="()[{}()]";
+     if(isvalid(s)){
+         cout<<"true"<<endl;
+     }
+     else{
+         cout<<"false"<<endl;
+     }
+ }
